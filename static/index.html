@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B1120">
+  <title>سامانه تحلیل هوشمند و مدیریت ریزش مشتری | Enterprise AI</title>
+
+  <!-- Google Fonts: Vazirmatn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Local Chart.js Engine with CDN Fallback -->
+  <script src="/static/chart.umd.min.js"></script>
+  <script>
+    if (typeof Chart === 'undefined') {
+      document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>');
+    }
+  </script>
+
+  <!-- Main Enterprise SaaS Stylesheet -->
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Top Global Brand Bar -->
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand-group">
+          <!-- <div class="brand-logo-badge">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div> -->
+          <div>
+            <div class="brand-title-wrap">
+              <h1 class="brand-title">سامانه تحلیل هوشمند و مدیریت ریزش مشتری</h1>
+              <span class="enterprise-badge"> v2</span>
+            </div>
+            <p class="brand-subtitle">پایش برخط رفتار کاربران، پیش‌بینی ریسک خروج با هوش مصنوعی و تجویز خودکار سناریوی نگهداشت</p>
+          </div>
+        </div>
+
+        <div class="header-status-indicator">
+          <span class="status-pulse-dot"></span>
+          <span>سامانه هوشمند در حال پایش</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Linear-style Floating Segmented Navigation -->
+    <nav class="nav-segment-bar" aria-label="بخش‌های سامانه">
+      <div class="nav-segment-inner" role="tablist">
+        <button type="button" class="nav-tab-btn active" role="tab" aria-selected="true" data-tab="tab-insights" id="btn-tab-insights">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span>داشبورد تحلیل و بینش کسب‌وکار</span>
+        </button>
+
+        <button type="button" class="nav-tab-btn" role="tab" aria-selected="false" data-tab="tab-radar" id="btn-tab-radar">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M16.2 7.8l-2 6.3-6.4 2.1 2-6.3z"></path>
+          </svg>
+          <span>رادار لحظه‌ای و آزمایشگاه ارزیابی</span>
+        </button>
+
+        <button type="button" class="nav-tab-btn" role="tab" aria-selected="false" data-tab="tab-customers" id="btn-tab-customers">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span>رادار هوشمند تمام مشتریان</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- MAIN INTERFACE VIEWPORT -->
+    <main class="main-viewport">
+
+      <!-- ======================================================== -->
+      <!-- SECTION 1: BUSINESS INTELLIGENCE & STRATEGIC INSIGHTS     -->
+      <!-- ======================================================== -->
+      <section id="tab-insights" class="tab-panel active" role="tabpanel" aria-labelledby="btn-tab-insights">
+        
+        <!-- Interactive Financial Simulation Slider -->
+        <div class="ui-card financial-simulator-card">
+          <div class="slider-row-header">
+            <div class="slider-title-group">
+              <!-- <span class="icon-bubble">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+               </svg>
+              </span> -->
+              <div>
+                <label for="total-customers-slider" class="simulator-label">برآورد زیان در خطر کسب‌وکار</label>
+                <p class="simulator-hint">با تنظیم تعداد مشتریان، زیان مالی در معرض ریسک ریزش را برآورد کنید.</p>
+              </div>
+            </div>
+            <div class="slider-display-pill" id="slider-val-display">۱۰٬۰۰۰ نفر</div>
+          </div>
+
+          <div class="slider-track-wrap">
+            <input type="range" id="total-customers-slider" min="1000" max="100000" step="1000" value="10000" class="saas-range-slider">
+            <div class="slider-ticks">
+              <span>۱٬۰۰۰</span>
+              <span>۲۵٬۰۰۰</span>
+              <span>۵۰٬۰۰۰</span>
+              <span>۷۵٬۰۰۰</span>
+              <span>۱۰۰٬۰۰۰</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Horizon KPI Cards -->
+        <div class="kpi-banner-grid">
+          <div class="ui-card kpi-item">
+            <div class="kpi-header">
+              <span class="kpi-title">نرخ ریزش کل پایگاه داده</span>
+              <span class="kpi-badge badge-danger">ریزش کل</span>
+            </div>
+            <div class="kpi-metric-row">
+              <span class="kpi-num color-danger" id="kpi-churn-rate">۱۶٫۸۴٪</span>
+            </div>
+            <span class="kpi-footer-sub" id="kpi-total-monitored">بر پایه پایش ۵٬۶۳۰ مشتری تاریخی</span>
+          </div>
+
+          <div class="ui-card kpi-item">
+            <div class="kpi-header">
+              <span class="kpi-title">مشتریان خارج‌شده قطعی</span>
+              <span class="kpi-badge badge-neutral">وضعیت خروج</span>
+            </div>
+            <div class="kpi-metric-row">
+              <span class="kpi-num" id="kpi-churned-count">۹۴۸</span>
+              <span class="kpi-unit">نفر</span>
+            </div>
+            <span class="kpi-footer-sub" id="kpi-retained-count">۴٬۶۸۲ مشتری وفادار و ماندگار</span>
+          </div>
+
+          <div class="ui-card kpi-item">
+            <div class="kpi-header">
+              <span class="kpi-title">زیان مالی سالانه در خطر</span>
+              <span class="kpi-badge badge-warning">ارزش در معرض ریسک</span>
+            </div>
+            <div class="kpi-metric-row">
+              <span class="kpi-num color-navy" id="kpi-loss-value">۸٫۴</span>
+              <span class="kpi-unit" id="kpi-loss-unit">میلیارد تومان</span>
+            </div>
+            <span class="kpi-footer-sub">با فرض میانگین خرید مشتریان</span>
+          </div>
+
+          <div class="ui-card kpi-item">
+            <div class="kpi-header">
+              <span class="kpi-title">قدرت تشخیص الگوهای ریسک</span>
+              <span class="kpi-badge badge-success">دقت مدل هوش مصنوعی</span>
+            </div>
+            <div class="kpi-metric-row">
+              <span class="kpi-num color-teal" id="kpi-detection-power">۹۹٫۸٪</span>
+            </div>
+            <span class="kpi-footer-sub">توانمندی تفکیک مشتریان وفادار از ریزشی</span>
+          </div>
+        </div>
+
+        <!-- 5 Deep Business Analyses Header -->
+        <div class="section-heading-bar">
+          <div class="heading-title-group">
+            <h2 class="view-title">بینش‌های کلیدی و اهرم‌های رفتاری مشتریان</h2>
+            <span class="view-desc">تحلیل‌های عمیق استخراج‌شده از داده‌های رفتار خرید، شکایات و وفاداری</span>
+          </div>
+        </div>
+
+        <!-- 5 Deep Analyses Card Container -->
+        <div class="deep-analyses-stack" id="analyses-container">
+          <div class="saas-loader-box">
+            <div class="spinner"></div>
+            <span>در حال واکشی و آماده‌سازی داده‌های هوش تجاری…</span>
+          </div>
+        </div>
+
+        <!-- 4-Stage Executive Roadmap -->
+        <div class="section-heading-bar" style="margin-top: 40px;">
+          <div class="heading-title-group">
+            <h2 class="view-title">نقشه راه اجرایی ۴ مرحله‌ای نگهداشت مشتری</h2>
+            <span class="view-desc">فرآیند سیستماتیک سازمانی برای کاهش قطعی نرخ ریزش و افزایش ارزش طول عمر (LTV)</span>
+          </div>
+        </div>
+
+        <div class="roadmap-flex-grid" id="roadmap-container">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- SECTION 2: LIVE RADAR & RETENTION EXPERIMENT LAB          -->
+      <!-- ======================================================== -->
+      <section id="tab-radar" class="tab-panel" role="tabpanel" aria-labelledby="btn-tab-radar">
+
+        <!-- Radar Scanner Header Console -->
+        <div class="ui-card radar-console-card">
+          <div class="radar-console-header">
+            
+            <!-- Graphic Animated Radar Scope -->
+            <div class="radar-scope-container">
+              <div class="radar-circle-outer">
+                <div class="radar-circle-middle"></div>
+                <div class="radar-circle-inner"></div>
+                <div class="radar-crosshair-h"></div>
+                <div class="radar-crosshair-v"></div>
+                <div class="radar-sweep-beam"></div>
+                <div class="radar-blip-dot blip-1"></div>
+                <div class="radar-blip-dot blip-2"></div>
+              </div>
+              <div class="radar-scope-text">
+                <span class="scope-title">رادار فعال پایش زنده</span>
+                <span class="scope-subtitle">اسکن مداوم جریان مشتریان</span>
+              </div>
+            </div>
+
+            <!-- Controls and Badges -->
+            <div class="radar-console-meta">
+              <div class="radar-chip-group">
+                <!--<span class="tag-pill tag-blue" id="radar-scan-badge">پایش شماره ۱</span>-->
+                <span class="tag-pill tag-teal" id="radar-status-tag">به‌روزرسانی خودکار | هر ۶ ثانیه</span>
+                <span class="tag-pill">۲ مشتری تحت نظر</span>
+              </div>
+
+              <div class="radar-controls-group">
+                <label class="saas-switch" title="فعال یا غیرفعال‌سازی اسکن خودکار">
+                  <input type="checkbox" id="auto-radar-toggle" checked>
+                  <span class="switch-slider"></span>
+                  <span class="switch-label">پایش خودکار</span>
+                </label>
+
+                <button type="button" class="btn-subtle" id="btn-manual-scan">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                  </svg>
+                  اسکن دستی
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 2px Synchronized Progress Bar -->
+          <div class="slim-progress-track">
+            <div class="slim-progress-fill" id="radar-progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- 2 Live Customer Radar Cards Container -->
+        <div class="live-radar-cards-grid" id="radar-cards-container">
+          <div class="saas-loader-box">
+            <div class="spinner"></div>
+            <span>در حال اسکن رادار و اجرای موتور استنتاج مدل هوش مصنوعی…</span>
+          </div>
+        </div>
+
+        <!-- Retention Lab Section Header -->
+        <div class="section-heading-bar" style="margin-top: 36px;">
+          <div class="heading-title-group">
+            <h2 class="view-title">ارزیابی هوشمند مشتری و پیشنهاد بازگشت</h2>
+            <span class="view-desc">وضعیت مشتری را بررسی کنید، میزان ریسک ریزش و عوامل مرتبط با آن را ببینید و متناسب با شرایط مشتری، اقدام پیشنهادی دریافت کنید.</span>
+          </div>
+        </div>
+
+        <!-- Lab Layout: 2 Columns (Right: Form, Left: Results in RTL) -->
+        <div class="retention-lab-grid">
+
+          <!-- Right Column (RTL): 7/8 Factor Evaluation Form -->
+          <div class="lab-col-form">
+            <div class="ui-card lab-card">
+              <div class="card-inner-header">
+                <h3 class="card-title-text">ورودی‌های ارزیابی رفتار مشتری</h3>
+                <span class="form-caption-tag">موتور هوشمند پیش‌بینی</span>
+              </div>
+
+              <!-- 3 Quick Scenario Chips -->
+              <div class="quick-presets-strip">
+                <span class="presets-caption">تست سناریوهای آماده:</span>
+                <div class="preset-chips">
+                  <button type="button" class="chip-btn" data-preset="1">
+                    <span class="chip-dot danger"></span>
+                    <span>خریدار شاکی</span>
+                  </button>
+                  <button type="button" class="chip-btn" data-preset="2">
+                    <span class="chip-dot success"></span>
+                    <span>مشتری پایدار</span>
+                  </button>
+                  <button type="button" class="chip-btn" data-preset="3">
+                    <span class="chip-dot warning"></span>
+                    <span>کاربر غیرفعال</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Form Inputs -->
+              <form id="lab-eval-form" class="saas-form">
+                <div class="form-grid-2">
+                  <div class="input-field">
+                    <label for="eval-tenure">۱) سابقه همراهی مشتری (ماه)</label>
+                    <input type="number" id="eval-tenure" min="0" max="60" value="2" required class="saas-input">
+                  </div>
+                  <div class="input-field">
+                    <label for="eval-days">۲) فاصله از آخرین خرید (روز)</label>
+                    <input type="number" id="eval-days" min="0" max="90" value="3" required class="saas-input">
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="input-field">
+                    <label>۳) ثبت شکایت در ماه اخیر</label>
+                    <div class="segmented-control" id="seg-complain">
+                      <label class="seg-item active">
+                        <input type="radio" name="eval_complain" value="0" checked>
+                        <span>خیر</span>
+                      </label>
+                      <label class="seg-item">
+                        <input type="radio" name="eval_complain" value="1">
+                        <span>بله</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="input-field">
+                    <label>۴) امتیاز رضایت مشتری (۱ تا ۵)</label>
+                    <div class="segmented-control" id="seg-sat">
+                      <label class="seg-item"><input type="radio" name="eval_sat" value="1"><span>۱</span></label>
+                      <label class="seg-item"><input type="radio" name="eval_sat" value="2"><span>۲</span></label>
+                      <label class="seg-item active"><input type="radio" name="eval_sat" value="3" checked><span>۳</span></label>
+                      <label class="seg-item"><input type="radio" name="eval_sat" value="4"><span>۴</span></label>
+                      <label class="seg-item"><input type="radio" name="eval_sat" value="5"><span>۵</span></label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="input-field">
+                    <label for="eval-category">۵) دسته کالای ترجیحی</label>
+                    <select id="eval-category" class="saas-select">
+                      <option value="Mobile Phone" selected>موبایل و دیجیتال</option>
+                      <option value="Fashion">مد و پوشاک</option>
+                      <option value="Grocery">سوپرمارکت و خواربار</option>
+                      <option value="Laptop & Accessory">لپ‌تاپ و تجهیزات</option>
+                      <option value="Others">سایر محصولات</option>
+                    </select>
+                  </div>
+
+                  <div class="input-field">
+                    <label for="eval-orders">۶) تعداد سفارش‌های موفق</label>
+                    <input type="number" id="eval-orders" min="1" max="50" value="2" required class="saas-input">
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="input-field">
+                    <label for="eval-tier">۷) سطح شهر مشتری</label>
+                    <select id="eval-tier" class="saas-select">
+                      <option value="1" selected>کلان‌شهرها (تهران، مشهد، اصفهان، شیراز، تبریز)</option>
+                      <option value="2">مراکز استان و شهرهای بزرگ</option>
+                      <option value="3">سایر شهرستان‌ها و مناطق</option>
+                    </select>
+                  </div>
+
+                  <div class="input-field">
+                    <label for="eval-store">۸) نام فروشگاه / کسب‌وکار</label>
+                    <input type="text" id="eval-store" value="کسب‌وکار شما" class="saas-input">
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-primary-action" id="btn-submit-eval">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                  </svg>
+                  <span>ارزیابی هوشمند ریسک ریزش مشتری</span>
+                </button>
+              </form>
+
+              <div class="form-disclaimer">
+                فاکتورهای تکمیل‌نشده به‌صورت خودکار با میانه آماری مشتریان هم‌گروه تکمیل می‌گردند.
+              </div>
+            </div>
+          </div>
+
+          <!-- Left Column (RTL): Output Results Cards -->
+          <div class="lab-col-output">
+            <div class="ui-card lab-card" id="eval-result-card">
+              <div class="card-inner-header">
+                <h3 class="card-title-text">نتیجه ارزیابی و اقدام پیشنهادی هوش مصنوعی</h3>
+                <span class="status-indicator-tag">خروجی برخط</span>
+              </div>
+
+              <div id="eval-output-content">
+                <div class="empty-state-card">
+                  <div class="empty-icon-box">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <path d="M12 16v-4"></path>
+                      <path d="M12 8h.01"></path>
+                    </svg>
+                  </div>
+                  <h4>منتظر ورودی ارزیابی مشتری</h4>
+                  <p>مشخصات مشتری را در فرم روبه‌رو تنظیم کنید و «محاسبه» را بزنید تا ریسک ریزش، عوامل مؤثر و پیشنهاد اقدام متناسب با مشتری نمایش داده شود.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- SECTION 3: 200 CUSTOMERS DIRECTORY & 360 DOSSIER          -->
+      <!-- ======================================================== -->
+      <section id="tab-customers" class="tab-panel" role="tabpanel" aria-labelledby="btn-tab-customers">
+        
+        <!-- Stripe-like Header & Filter Bar -->
+        <div class="table-control-header">
+          <div>
+            <h2 class="view-title">رادار هوشمند مشتریان</h2>
+            <p class="view-desc" id="customers-count-badge">۲۰۰ مشتری در حال پایش · ۳۵٪ پرریسک · ۶۵٪ پایدار</p>
+          </div>
+
+          <!-- Search & Risk Filters -->
+          <div class="filter-actions-group">
+            <div class="search-input-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="customer-search-input" placeholder="جستجوی شناسه مشتری…" class="table-search-field">
+            </div>
+
+            <div class="select-filter-box">
+              <select id="customer-risk-filter" class="table-filter-dropdown">
+                <option value="all">همه سطوح ریسک</option>
+                <option value="red">ریسک بحرانی (بالای ۷۰٪)</option>
+                <option value="amber">ریسک هشدار (۳۵ تا ۷۰٪)</option>
+                <option value="green">پایدار (زیر ۳۵٪)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stripe-pattern Data Table -->
+        <div class="ui-card data-table-card">
+          <div class="stripe-table-wrap">
+            <table class="stripe-data-table" id="customers-table">
+              <thead>
+                <tr>
+                  <th style="width: 12%;">شناسه مشتری</th>
+                  <th style="width: 10%;">سابقه (ماه)</th>
+                  <th style="width: 14%;">صنف کالا</th>
+                  <th style="width: 16%;">ریسک خروج</th>
+                  <th style="width: 24%;">راهبرد مداخله پیشنهادی</th>
+                  <th style="width: 12%;">وضعیت اقدام</th>
+                  <th style="width: 12%; text-align: left;">عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="customers-table-body">
+                <tr>
+                  <td colspan="7" class="table-loading-cell">
+                    <div class="saas-loader-box" style="padding: 24px;">
+                      <div class="spinner"></div>
+                      <span>در حال دریافت پرونده‌های هوشمند ۲۰۰ مشتری…</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- 360-DEGREE DOSSIER POPUP (MODAL DIALOG) -->
+    <div class="modal-backdrop-overlay" id="dossier-modal" aria-hidden="true" role="dialog">
+      <div class="modal-surface-dialog">
+        
+        <!-- Modal Header -->
+        <div class="modal-top-bar">
+          <div class="modal-identity-group">
+            <div class="modal-id-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <h3 class="modal-title-main" id="modal-cust-title">اطلاعات مشتری —</h3>
+                <span class="pill" id="modal-cust-badge">پایدار</span>
+              </div>
+              <span class="modal-subtitle-text">شناسنامه جامع آماری، تحلیل رفتار و راهبرد پیشنهادی حفظ مشتری</span>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:12px;">
+            <button type="button" class="btn-close-modal" id="btn-close-modal" onclick="closeDossierModal()" aria-label="بستن پنجره">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2-Column Modal Body -->
+        <div class="modal-two-columns">
+          
+          <!-- Right Column: 19 Variables Dossier Categorized into 3 Groups -->
+          <div class="modal-col-attributes">
+            <div class="m360-groups-stack" id="modal-cards-grid">
+              <!-- Categorized attribute groups rendered dynamically by app.js -->
+            </div>
+          </div>
+
+          <!-- Left Column: Smart NBA Command Console -->
+          <div class="modal-col-ai">
+            <div class="nba-console-container">
+              <!-- Risk & Root Drivers Area -->
+              <div id="modal-risk-area"></div>
+
+              <!-- Behavioral Playbook & Tactical Dispatch Area -->
+              <div id="modal-action-area"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="saas-toast-stack" id="toast-container"></div>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="/static/app.js"></script>
+</body>
+</html>
