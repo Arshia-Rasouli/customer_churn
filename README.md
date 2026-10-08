@@ -246,10 +246,13 @@ Instead of generic blanket discounting, the platform incorporates a **6-Playbook
 * **Python:** 3.10 or newer (tested on Python 3.12)
 * **Modern Web Browser:** Chrome, Edge, Firefox, or Safari
 
+
 ### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/<USER>/<REPO>.git
-cd customer_churn_project
+git clone [https://github.com/Arshia-Rasouli/customer_churn.git](https://github.com/Arshia-Rasouli/customer_churn.git)
+cd customer_churn
+
 ```
 
 ### 2. Create and Activate Virtual Environment
