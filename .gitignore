@@ -8,3 +8,4 @@ env/
 .vscode/
 .idea/
 .DS_Store
+.agents/

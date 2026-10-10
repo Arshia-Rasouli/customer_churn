@@ -1461,6 +1461,24 @@ function closeDossierModal() {
 }
 window.closeDossierModal = closeDossierModal;
 
+function openIntegrationModal() {
+  const modal = document.getElementById('integration-modal');
+  if (modal) {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+}
+window.openIntegrationModal = openIntegrationModal;
+
+function closeIntegrationModal() {
+  const modal = document.getElementById('integration-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+}
+window.closeIntegrationModal = closeIntegrationModal;
+
 function initModalEvents() {
   const modal = document.getElementById('dossier-modal');
   const closeBtn = document.getElementById('btn-close-modal');
@@ -1480,9 +1498,37 @@ function initModalEvents() {
     });
   }
 
+  // Integration Center Modal Handlers
+  const integModal = document.getElementById('integration-modal');
+  const openIntegBtn = document.getElementById('btn-open-integration-modal');
+  const closeIntegBtn = document.getElementById('btn-close-integration-modal');
+
+  if (openIntegBtn) {
+    openIntegBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openIntegrationModal();
+    });
+  }
+
+  if (closeIntegBtn) {
+    closeIntegBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeIntegrationModal();
+    });
+  }
+
+  if (integModal) {
+    integModal.addEventListener('click', (e) => {
+      if (!e.target.closest('.modal-surface-dialog')) {
+        closeIntegrationModal();
+      }
+    });
+  }
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeDossierModal();
+      closeIntegrationModal();
     }
   });
 }

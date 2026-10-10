@@ -42,9 +42,19 @@
           </div>
         </div>
 
-        <div class="header-status-indicator">
-          <span class="status-pulse-dot"></span>
-          <span>سامانه هوشمند در حال پایش</span>
+        <div class="header-actions">
+          <button type="button" class="btn-integration-modal" id="btn-open-integration-modal">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+            </svg>
+            <span>🔗 اتصال به سامانه‌ها (Integrations)</span>
+          </button>
+
+          <div class="header-status-indicator">
+            <span class="status-pulse-dot"></span>
+            <span>سامانه هوشمند در حال پایش</span>
+          </div>
         </div>
       </div>
     </header>
@@ -540,6 +550,177 @@
 
         </div>
 
+      </div>
+    </div>
+
+    <!-- INTEGRATION CENTER MODAL (مرکز یکپارچه‌سازی و اتصال به سامانه‌ها - کاکپیت سازمانی) -->
+    <div class="modal-backdrop-overlay" id="integration-modal" aria-hidden="true" role="dialog">
+      <div class="modal-surface-dialog modal-integration-fullscreen">
+        <!-- Header Bar -->
+        <div class="modal-top-bar">
+          <div class="modal-identity-group">
+            <div class="modal-id-badge" style="background: rgba(99, 102, 241, 0.15); color: #818CF8; border-color: rgba(99, 102, 241, 0.3);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="modal-title-main">مرکز یکپارچه‌سازی و اتصال هوشمند (Integration Gateway)</h3>
+              <span class="modal-subtitle-text">پلاگین لایه دوم هوش مصنوعی · قابل اتصال به تمام وب‌سایت‌ها، CRMها و نرم‌افزارهای حسابداری و مالی</span>
+            </div>
+          </div>
+          <button type="button" class="btn-close-modal" id="btn-close-integration-modal" aria-label="بستن پنجره">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="pointer-events:none;">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 1. Minimal 3-Stage Pipeline Bar -->
+        <div class="integ-pipeline-strip">
+          <div class="pipe-node">
+            <span class="pipe-num">۱</span>
+            <div>
+              <b>اتصال نرم‌افزار شما</b>
+              <span>ارسال امن اطلاعات رفتار و خرید</span>
+            </div>
+          </div>
+          <div class="pipe-connector">←</div>
+          <div class="pipe-node active">
+            <span class="pipe-num">۲</span>
+            <div>
+              <b>تحلیل آنی هوش مصنوعی</b>
+              <span>محاسبه ریسک + استخراج علت اصلی</span>
+            </div>
+          </div>
+          <div class="pipe-connector">←</div>
+          <div class="pipe-node">
+            <span class="pipe-num">۳</span>
+            <div>
+              <b>اقدام خودکار در سامانه شما</b>
+              <span>ثبت هشدار در CRM یا ارسال پیامک</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Three Connection Architecture Cards with Symbolic Buttons -->
+        <div class="integ-methods-grid">
+          <!-- Method 1: API / Webhooks -->
+          <div class="integ-method-card">
+            <div class="method-card-head">
+              <span class="method-icon-box">⚡</span>
+              <div>
+                <b>۱. وب‌سرویس و وب‌هوک (REST API)</b>
+                <span class="method-sub">مناسب وب‌سایت‌ها و CRMهای ابری</span>
+              </div>
+            </div>
+            <ul class="method-bullets">
+              <li>ارتباط بلادرنگ دوطرفه (Real-time Latency &lt; 80ms)</li>
+              <li>تولید خودکار پیش‌نویس پیامک و کوپن در سیستم مقصد</li>
+              <li>پشتیبانی از انواع فرمت‌های مدرن JSON و Webhook</li>
+            </ul>
+            <div class="method-card-footer">
+              <button type="button" class="btn-method-action" onclick="typeof showToast === 'function' ? showToast('🔑 کلید تستی API کپی شد!') : alert('کلید تستی API کپی شد!')">🔑 مشاهده مستندات API و کلید تست</button>
+            </div>
+          </div>
+
+          <!-- Method 2: Database Sync -->
+          <div class="integ-method-card">
+            <div class="method-card-head">
+              <span class="method-icon-box">🗄️</span>
+              <div>
+                <b>۲. همگام‌سازی مستقیم پایگاه داده</b>
+                <span class="method-sub">نرم‌افزارهای مالی، انبار و ویندوزی</span>
+              </div>
+            </div>
+            <ul class="method-bullets">
+              <li>اتصال امن فقط-خواندنی (Read-Only) به SQL Server, MySQL, Oracle</li>
+              <li>پایش خودکار شبانه بدون افت سرعت در نرم‌افزارهای سازمان</li>
+              <li>بدون نیاز به ایجاد تغییر در کد نرم‌افزارهای فعلی شما</li>
+            </ul>
+            <div class="method-card-footer">
+              <button type="button" class="btn-method-action secondary" onclick="typeof showToast === 'function' ? showToast('⚡ تست سلامت اتصال پایگاه داده با موفقیت شبیه‌سازی شد.') : alert('اتصال پایگاه داده شبیه‌سازی شد.')">⚡ تست سلامت اتصال پایگاه داده</button>
+            </div>
+          </div>
+
+          <!-- Method 3: Excel / CSV Batch -->
+          <div class="integ-method-card">
+            <div class="method-card-head">
+              <span class="method-icon-box">📊</span>
+              <div>
+                <b>۳. بارگذاری دسته‌ای فایل اکسل (CSV)</b>
+                <span class="method-sub">بدون نیاز به تیم فنی یا کدنویسی</span>
+              </div>
+            </div>
+            <ul class="method-bullets">
+              <li>خروجی مستقیم اکسل از هر نرم‌افزار قدیمی یا مدرن</li>
+              <li>شناسایی خودکار ستون‌ها و استخراج فهرست اولویت تماس</li>
+              <li>دریافت اکسل گزارش با ستون پیامک‌های اختصاصی بازگشت</li>
+            </ul>
+            <div class="method-card-footer">
+              <button type="button" class="btn-method-action secondary" onclick="typeof showToast === 'function' ? showToast('📥 فایل نمونه قالب استاندارد اکسل آماده شد.') : alert('فایل قالب نمونه اکسل دانلود شد.')">📥 دانلود نمونه قالب استاندارد اکسل</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Comprehensive Payload Live Inspection (Full Data Preview) -->
+        <div class="integ-payload-console">
+          <div class="console-top-strip">
+            <div class="console-endpoint-tag">
+              <span class="method-badge">POST</span>
+              <code>https://api.churn-intelligence.ir/v1/predict-and-dispatch</code>
+            </div>
+            <div class="console-key-tag">
+              <span>API Key: <code>sk_live_98a72b6f12e84c9d...</code></span>
+              <button type="button" class="btn-copy-mini" onclick="copyToClipboard('sk_live_98a72b6f12e84c9d', 'کلید API در کلیپ‌بورد کپی شد!')">کپی کلید</button>
+            </div>
+          </div>
+
+          <div class="console-dual-grid">
+            <!-- Input JSON Panel -->
+            <div class="console-pane input-pane">
+              <div class="pane-header">
+                <span>📥 ورودی کامل رفتار مشتری از CRM شما (شناسنامه ۱۸ متغیره)</span>
+                <span class="pane-badge">Request Payload</span>
+              </div>
+              <pre class="code-block"><code>{
+  "CustomerID": 10482,
+  "Tenure": 1,                      <span class="cm">// ۱ ماه سابقه عضویت (ماه بحرانی)</span>
+  "DaySinceLastOrder": 45,          <span class="cm">// ۴۵ روز وقفه در خرید</span>
+  "Complain": 0,                    <span class="cm">// بدون ثبت شکایت</span>
+  "SatisfactionScore": 3,           <span class="cm">// امتیاز رضایت متوسط</span>
+  "PreferedOrderCat": "Fashion",    <span class="cm">// دسته سفارش: مد و پوشاک</span>
+  "OrderCount": 2,                  <span class="cm">// ۲ بار خرید قبلی</span>
+  "CityTier": 3,                    <span class="cm">// شهر سطح ۳</span>
+  "WarehouseToHome": 24,            <span class="cm">// فاصله ۲۴ کیلومتری از انبار</span>
+  "CashbackAmount": 128000          <span class="cm">// اعتبار دریافتی</span>
+}</code></pre>
+            </div>
+
+            <!-- Output JSON Panel -->
+            <div class="console-pane output-pane">
+              <div class="pane-header">
+                <span>📤 خروجی هوش مصنوعی جهت اعمال خودکار در سیستم شما</span>
+                <span class="pane-badge success">Response (84ms)</span>
+              </div>
+              <pre class="code-block"><code>{
+  "churn_probability_pct": 42.0,
+  "risk_status": "هشدار (Amber Risk)",
+  "root_cause_driver": "وقفه طولانی در خرید و عدم سفارش در روزهای اخیر",
+  "assigned_playbook": "winback_offer",
+  "action_strategy": "مشوق بازگشت زماندار ۴۸ ساعته جهت فعالسازی مجدد کاربر",
+  "automated_sms": {
+    "target_phone": "0912*******",
+    "voucher_code": "RECOVER",
+    "text": "دلتنگ شما هستیم! برای سفارش بعدی شما اعتبار خرید اختصاصی با مهلت ۴۸ ساعته فعال شد. کد: RECOVER"
+  },
+  "crm_task_created": true
+}</code></pre>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
