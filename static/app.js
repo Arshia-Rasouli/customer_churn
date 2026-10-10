@@ -323,17 +323,17 @@ function initAnalysisChart(type, canvasId, wrapId) {
     rtl: true,
     titleFont: { family: 'Vazirmatn, Tahoma, sans-serif', size: 12, weight: '700' },
     bodyFont: fontConfig,
-    backgroundColor: '#0F172A',
-    borderColor: '#24334A',
+    backgroundColor: '#003741',
+    borderColor: '#006F83',
     borderWidth: 1,
-    titleColor: '#CBD5E1',
-    bodyColor: '#F8FAFC',
+    titleColor: '#99F2FF',
+    bodyColor: '#FFFFFF',
     padding: 12,
     cornerRadius: 8,
     displayColors: false,
   };
-  const darkGrid = { color: 'rgba(255, 255, 255, 0.06)', drawBorder: false };
-  const tickColor = '#94A3B8';
+  const darkGrid = { color: 'rgba(0, 55, 65, 0.08)', drawBorder: false };
+  const tickColor = '#626264';
 
   try {
     let chartObj = null;
@@ -346,7 +346,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
           labels: ['بدون شکایت', 'دارای شکایت'],
           datasets: [{
             data: [compData['بدون شکایت'], compData['دارای شکایت']],
-            backgroundColor: ['#10B981', '#EF4444'],
+            backgroundColor: ['#197A4B', '#CE0000'],
             borderRadius: 8,
             barThickness: 42,
           }]
@@ -371,7 +371,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
               grid: darkGrid
             },
             x: {
-              ticks: { font: fontConfig, color: '#E2E8F0' },
+              ticks: { font: fontConfig, color: '#333333' },
               grid: { display: false }
             }
           }
@@ -390,13 +390,13 @@ function initAnalysisChart(type, canvasId, wrapId) {
           datasets: [{
             label: 'نرخ ماندگاری',
             data: retention,
-            borderColor: '#4F7CFF',
+            borderColor: '#00A3BF',
             borderWidth: 2.5,
-            backgroundColor: 'rgba(79, 124, 255, 0.14)',
+            backgroundColor: 'rgba(0, 163, 191, 0.12)',
             fill: true,
             tension: 0.35,
-            pointBackgroundColor: ['#EF4444', '#4F7CFF', '#4F7CFF', '#4F7CFF', '#4F7CFF'],
-            pointBorderColor: '#111A2B',
+            pointBackgroundColor: ['#CE0000', '#00A3BF', '#00A3BF', '#00A3BF', '#00A3BF'],
+            pointBorderColor: '#FFFFFF',
             pointBorderWidth: 2,
             pointRadius: [7, 5, 5, 5, 5],
           }]
@@ -421,7 +421,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
               grid: darkGrid
             },
             x: {
-              ticks: { font: fontConfig, color: '#E2E8F0' },
+              ticks: { font: fontConfig, color: '#333333' },
               grid: { display: false }
             }
           }
@@ -455,12 +455,12 @@ function initAnalysisChart(type, canvasId, wrapId) {
               type: 'line',
               label: 'نرخ ریزش',
               data: rates,
-              borderColor: '#F59E0B',
+              borderColor: '#D97706',
               borderWidth: 2.8,
               tension: 0.3,
               yAxisID: 'y1',
-              pointBackgroundColor: ['#F59E0B', '#F59E0B', '#F59E0B', '#F59E0B', '#EF4444'],
-              pointBorderColor: '#111A2B',
+              pointBackgroundColor: ['#D97706', '#D97706', '#D97706', '#D97706', '#CE0000'],
+              pointBorderColor: '#FFFFFF',
               pointBorderWidth: 2,
               pointRadius: [5, 5, 5, 5, 8],
             },
@@ -468,7 +468,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
               type: 'bar',
               label: 'مشتریان وفادار',
               data: loyal,
-              backgroundColor: '#3B82F6',
+              backgroundColor: '#00A3BF',
               borderRadius: 6,
               yAxisID: 'y',
             },
@@ -476,7 +476,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
               type: 'bar',
               label: 'مشتریان خارج‌شده',
               data: churned,
-              backgroundColor: '#EF4444',
+              backgroundColor: '#CE0000',
               borderRadius: 6,
               yAxisID: 'y',
             }
@@ -487,7 +487,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              labels: { font: fontConfig, color: '#CBD5E1', boxWidth: 12 }
+              labels: { font: fontConfig, color: '#333333', boxWidth: 12 }
             },
             tooltip: darkTooltip
           },
@@ -501,11 +501,11 @@ function initAnalysisChart(type, canvasId, wrapId) {
               position: 'right',
               min: 0,
               max: 30,
-              ticks: { font: fontConfig, color: '#F59E0B', callback: v => `${toPersianDigits(v)}٪` },
+              ticks: { font: fontConfig, color: '#D97706', callback: v => `${toPersianDigits(v)}٪` },
               grid: { display: false }
             },
             x: {
-              ticks: { font: fontConfig, color: '#E2E8F0' },
+              ticks: { font: fontConfig, color: '#333333' },
               grid: { display: false }
             }
           }
@@ -525,7 +525,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
         return names[k] || k;
       });
       const values = cats.map(([, v]) => v);
-      const colors = ['#EF4444', '#F59E0B', '#4F7CFF', '#3B82F6', '#10B981'];
+      const colors = ['#CE0000', '#D97706', '#00A3BF', '#006F83', '#197A4B'];
 
       chartObj = new Chart(ctx, {
         type: 'bar',
@@ -557,7 +557,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
               grid: darkGrid
             },
             y: {
-              ticks: { font: fontConfig, color: '#E2E8F0' },
+              ticks: { font: fontConfig, color: '#333333' },
               grid: { display: false }
             }
           }
@@ -575,13 +575,13 @@ function initAnalysisChart(type, canvasId, wrapId) {
           datasets: [{
             label: 'ریزش بر اساس مسافت',
             data: distValues,
-            borderColor: '#4F7CFF',
+            borderColor: '#00A3BF',
             borderWidth: 2.5,
-            backgroundColor: 'rgba(79, 124, 255, 0.12)',
+            backgroundColor: 'rgba(0, 163, 191, 0.12)',
             fill: true,
             tension: 0.25,
-            pointBackgroundColor: ['#10B981', '#F59E0B', '#EF4444'],
-            pointBorderColor: '#111A2B',
+            pointBackgroundColor: ['#197A4B', '#D97706', '#CE0000'],
+            pointBorderColor: '#FFFFFF',
             pointBorderWidth: 2,
             pointRadius: 6,
           }]
@@ -604,7 +604,7 @@ function initAnalysisChart(type, canvasId, wrapId) {
               grid: darkGrid
             },
             x: {
-              ticks: { font: fontConfig, color: '#E2E8F0' },
+              ticks: { font: fontConfig, color: '#333333' },
               grid: { display: false }
             }
           }
@@ -987,7 +987,7 @@ function renderLabResult(res) {
 
   const isRegistered = state.registeredActions.has(res.lab_id) || res.is_registered;
   const regBtnHtml = isRegistered
-    ? `<button type="button" class="btn-primary-action" disabled style="background:#1E293B;color:#64748B;box-shadow:none;">✓ اقدام پیشنهادی قبلاً ثبت شده است</button>`
+    ? `<button type="button" class="btn-primary-action" disabled style="background:#E2E8F0;color:#626264;box-shadow:none;">✓ اقدام پیشنهادی قبلاً ثبت شده است</button>`
     : `<button type="button" class="btn-primary-action" id="btn-reg-lab" data-id="${res.lab_id}">ثبت اقدام پیشنهادی در سامانه</button>`;
 
   const sms = res.sms || {};
@@ -1063,8 +1063,8 @@ function renderLabResult(res) {
       await registerAction(res.lab_id);
       regBtn.disabled = true;
       regBtn.textContent = '✓ اقدام پیشنهادی در سامانه ثبت شد';
-      regBtn.style.background = '#1E293B';
-      regBtn.style.color = '#64748B';
+      regBtn.style.background = '#E2E8F0';
+      regBtn.style.color = '#626264';
       regBtn.style.boxShadow = 'none';
       showToast('سناریوی بازگشت برای مشتری در سامانه ثبت گردید ✅');
     });
