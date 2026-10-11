@@ -36,7 +36,7 @@
           <div>
             <div class="brand-title-wrap">
               <h1 class="brand-title">سامانه تحلیل هوشمند و مدیریت ریزش مشتری</h1>
-              <span class="enterprise-badge"> v2</span>
+              <!-- <span class="enterprise-badge"> v2</span> -->
             </div>
             <p class="brand-subtitle">پایش برخط رفتار کاربران، پیش‌بینی ریسک خروج با هوش مصنوعی و تجویز خودکار سناریوی نگهداشت</p>
           </div>
@@ -48,7 +48,7 @@
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
               <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
             </svg>
-            <span>🔗 اتصال به سامانه‌ها (Integrations)</span>
+            <span>اتصال به پلتفرم‌ها</span>
           </button>
 
           <div class="header-status-indicator">
@@ -130,9 +130,10 @@
 
         <!-- 4 Horizon KPI Cards -->
         <div class="kpi-banner-grid">
-          <div class="ui-card kpi-item">
+
+                    <div class="ui-card kpi-item">
             <div class="kpi-header">
-              <span class="kpi-title">نرخ ریزش کل پایگاه داده</span>
+              <span class="kpi-title">نرخ ریزش کل مشتریان</span>
               <span class="kpi-badge badge-danger">ریزش کل</span>
             </div>
             <div class="kpi-metric-row">
@@ -238,7 +239,7 @@
               <div class="radar-chip-group">
                 <!--<span class="tag-pill tag-blue" id="radar-scan-badge">پایش شماره ۱</span>-->
                 <span class="tag-pill tag-teal" id="radar-status-tag">به‌روزرسانی خودکار | هر ۶ ثانیه</span>
-                <span class="tag-pill">۲ مشتری تحت نظر</span>
+                <!-- <span class="tag-pill">۲ مشتری تحت نظر</span> -->
               </div>
 
               <div class="radar-controls-group">
@@ -566,8 +567,8 @@
               </svg>
             </div>
             <div>
-              <h3 class="modal-title-main">مرکز یکپارچه‌سازی و اتصال هوشمند (Integration Gateway)</h3>
-              <span class="modal-subtitle-text">پلاگین لایه دوم هوش مصنوعی · قابل اتصال به تمام وب‌سایت‌ها، CRMها و نرم‌افزارهای حسابداری و مالی</span>
+              <h3 class="modal-title-main">اتصال هوشمند به اکوسیستم کسب‌وکار</h3>
+              <span class="modal-subtitle-text">اتصال خروجی‌های تحلیلی و قابلیت‌های پیش‌بینی به سیستم‌های دیگر.</span>
             </div>
           </div>
           <button type="button" class="btn-close-modal" id="btn-close-integration-modal" aria-label="بستن پنجره">
@@ -583,24 +584,24 @@
           <div class="pipe-node">
             <span class="pipe-num">۱</span>
             <div>
-              <b>اتصال نرم‌افزار شما</b>
-              <span>ارسال امن اطلاعات رفتار و خرید</span>
+              <b>اتصال به سامانه شما</b>
+              <span>دریافت امن داده‌های مشتری، سوابق خرید و تعاملات از سامانه‌های موجود</span>
             </div>
           </div>
           <div class="pipe-connector">←</div>
           <div class="pipe-node active">
             <span class="pipe-num">۲</span>
-            <div>
-              <b>تحلیل آنی هوش مصنوعی</b>
-              <span>محاسبه ریسک + استخراج علت اصلی</span>
+            <div> 
+              <b>تحلیل آنی و ارزیابی</b>
+              <span>پیش‌بینی احتمال ریزش، شناسایی عوامل مرتبط و تعیین اولویت مشتریان نیازمند پیگیری</span>
             </div>
           </div>
           <div class="pipe-connector">←</div>
           <div class="pipe-node">
             <span class="pipe-num">۳</span>
             <div>
-              <b>اقدام خودکار در سامانه شما</b>
-              <span>ثبت هشدار در CRM یا ارسال پیامک</span>
+              <b>انتقال نتایج و اجرای اقدام</b>
+              <span>ارسال نتایج تحلیل به سامانه‌های دیگر برای ثبت هشدار، پیگیری مشتری یا فعال‌سازی فرایندهای مرتبط</span>
             </div>
           </div>
         </div>
@@ -612,8 +613,8 @@
             <div class="method-card-head">
               <span class="method-icon-box">⚡</span>
               <div>
-                <b>۱. وب‌سرویس و وب‌هوک (REST API)</b>
-                <span class="method-sub">مناسب وب‌سایت‌ها و CRMهای ابری</span>
+                <b>۱. وبسرویس و اتصال از طریق API</b>
+                <span class="method-sub">مناسب وب‌سایت‌ها و CRMها</span>
               </div>
             </div>
             <ul class="method-bullets">
@@ -622,7 +623,7 @@
               <li>پشتیبانی از انواع فرمت‌های مدرن JSON و Webhook</li>
             </ul>
             <div class="method-card-footer">
-              <button type="button" class="btn-method-action" onclick="typeof showToast === 'function' ? showToast('🔑 کلید تستی API کپی شد!') : alert('کلید تستی API کپی شد!')">🔑 مشاهده مستندات API و کلید تست</button>
+              <button type="button" class="btn-method-action" onclick="typeof showToast === 'function' ? showToast('🔑 کلید تستی API کپی شد!') : alert('کلید تستی API کپی شد!')">🔑 مشاهده مستندات API و کلید آزمایشی</button>
             </div>
           </div>
 
@@ -631,7 +632,7 @@
             <div class="method-card-head">
               <span class="method-icon-box">🗄️</span>
               <div>
-                <b>۲. همگام‌سازی مستقیم پایگاه داده</b>
+                <b>۲. اتصال به پایگاه داده</b>
                 <span class="method-sub">نرم‌افزارهای مالی، انبار و ویندوزی</span>
               </div>
             </div>
@@ -641,7 +642,7 @@
               <li>بدون نیاز به ایجاد تغییر در کد نرم‌افزارهای فعلی شما</li>
             </ul>
             <div class="method-card-footer">
-              <button type="button" class="btn-method-action secondary" onclick="typeof showToast === 'function' ? showToast('⚡ تست سلامت اتصال پایگاه داده با موفقیت شبیه‌سازی شد.') : alert('اتصال پایگاه داده شبیه‌سازی شد.')">⚡ تست سلامت اتصال پایگاه داده</button>
+              <button type="button" class="btn-method-action secondary" onclick="typeof showToast === 'function' ? showToast('⚡ تست سلامت اتصال پایگاه داده با موفقیت شبیه‌سازی شد.') : alert('اتصال پایگاه داده شبیه‌سازی شد.')">⚡ بررسی وضعیت اتصال پایگاه داده</button>
             </div>
           </div>
 
@@ -650,23 +651,23 @@
             <div class="method-card-head">
               <span class="method-icon-box">📊</span>
               <div>
-                <b>۳. بارگذاری دسته‌ای فایل اکسل (CSV)</b>
+                <b>۳. ورود اطلاعات از فایل اکسل و CSV</b>
                 <span class="method-sub">بدون نیاز به تیم فنی یا کدنویسی</span>
               </div>
             </div>
             <ul class="method-bullets">
               <li>خروجی مستقیم اکسل از هر نرم‌افزار قدیمی یا مدرن</li>
               <li>شناسایی خودکار ستون‌ها و استخراج فهرست اولویت تماس</li>
-              <li>دریافت اکسل گزارش با ستون پیامک‌های اختصاصی بازگشت</li>
+              <li>دریافت قالب استاندارد فایل</li>
             </ul>
             <div class="method-card-footer">
-              <button type="button" class="btn-method-action secondary" onclick="typeof showToast === 'function' ? showToast('📥 فایل نمونه قالب استاندارد اکسل آماده شد.') : alert('فایل قالب نمونه اکسل دانلود شد.')">📥 دانلود نمونه قالب استاندارد اکسل</button>
+              <button type="button" class="btn-method-action secondary" onclick="typeof showToast === 'function' ? showToast('📥 فایل نمونه قالب استاندارد اکسل آماده شد.') : alert('فایل قالب نمونه اکسل دانلود شد.')">📥  نمونه قالب استاندارد اکسل</button>
             </div>
           </div>
         </div>
 
         <!-- 3. Comprehensive Payload Live Inspection (Full Data Preview) -->
-        <div class="integ-payload-console">
+        <!--<div class="integ-payload-console">
           <div class="console-top-strip">
             <div class="console-endpoint-tag">
               <span class="method-badge">POST</span>
@@ -678,8 +679,8 @@
             </div>
           </div>
 
-          <div class="console-dual-grid">
-            <!-- Input JSON Panel -->
+          <div class="console-dual-grid">-->
+            <!-- Input JSON Panel 
             <div class="console-pane input-pane">
               <div class="pane-header">
                 <span>📥 ورودی کامل رفتار مشتری از CRM شما (شناسنامه ۱۸ متغیره)</span>
@@ -699,7 +700,7 @@
 }</code></pre>
             </div>
 
-            <!-- Output JSON Panel -->
+             Output JSON Panel 
             <div class="console-pane output-pane">
               <div class="pane-header">
                 <span>📤 خروجی هوش مصنوعی جهت اعمال خودکار در سیستم شما</span>
@@ -720,7 +721,7 @@
 }</code></pre>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
