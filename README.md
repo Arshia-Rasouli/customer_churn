@@ -37,7 +37,7 @@ This platform analyzes behavioral customer signals to **identify churn risks lon
 
 ---
 
-## 🏗️ System Architecture & Pipeline
+## System Architecture & Pipeline
 
 The system uses a fast and lightweight **Client-Server setup**:
 * **Backend:** Built with **FastAPI** (Python) for quick data processing and real-time model scoring.
@@ -131,7 +131,7 @@ This platform is engineered not as an isolated data silo, but as a modular intel
 
 ---
 
-## ✨Key Dashboard Features
+## Key Dashboard Features
 
 The web application is structured into **three operational tabs**, catering to executive stakeholders, marketing retention teams, and frontline account managers:
 
@@ -139,7 +139,7 @@ The web application is structured into **three operational tabs**, catering to e
  ┌────────────────────────────────────────────────────────────────────────┐
  │                     DASHBOARD NAVIGATION TABS                          │
  ├─────────────────────────┬────────────────────────┬─────────────────────┤
- │  📊 تحلیل‌های استراتژیک  │  ⚡ رادار و آزمایشگاه  │  📋 فهرست مشتریان  │
+ │     تحلیل‌های استراتژیک  │     رادار و آزمایشگاه  │       فهرست مشتریان  │
  │  Strategic Intelligence │  Live Radar & Lab      │  Customer Directory │
  │                         │  & Customer Retention  │  & 360° Dossier     │
  └─────────────────────────┴────────────────────────┴─────────────────────┘
@@ -229,7 +229,7 @@ pip install -r requirements.txt
 ```
 
 <details>
-<summary>📦 View <code>requirements.txt</code> dependencies</summary>
+<summary> View <code>requirements.txt</code> dependencies</summary>
 
 ```text
 fastapi>=0.100.0
