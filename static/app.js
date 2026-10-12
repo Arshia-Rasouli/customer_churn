@@ -1385,10 +1385,10 @@ function openDossierModal(customerId) {
             </div>
           </div>
 
-          <!-- ۲. راهبرد جسورانه پیشنهادی -->
+          <!-- ۲. راهبرد  پیشنهادی -->
           <div class="clean-box clean-box-strategy">
             <div class="clean-box-header">
-              <span class="clean-box-title">💡 راهبرد جسورانه پیشنهادی</span>
+              <span class="clean-box-title">💡 راهبرد پیشنهادی</span>
               <span class="badge-nba ${nbaCfg.cssClass}">
                 <span class="nba-badge-icon">${nbaCfg.icon}</span>
                 <span>${nbaCfg.label}</span>
