@@ -1,47 +1,48 @@
 <div align="center">
 
-# 📊 Customer Churn Intelligence & Management System
+# Customer Churn Intelligence & Management System
 
 ### سامانه تحلیل هوشمند و مدیریت ریزش مشتری
 
-**Enterprise-grade Churn Early Warning · AI Behavioral Diagnosis · Automated Next Best Action (NBA) Playbooks**
+**Enterprise-Grade Churn Early Warning · AI Behavioral Diagnosis · Automated Next Best Action (NBA)**
 
 [Executive Summary](#-executive-summary--the-business-problem) ·
-[Architecture](#%EF%B8%8F-system-architecture--pipeline) ·
+[System Architecture](#️-system-architecture--pipeline) ·
+[Integration Gateway](#-plug-and-play-integration-gateway) ·
 [Dashboard Features](#-key-dashboard-features) ·
 [Behavioral Playbooks](#-behavioral-next-best-action-nba-playbooks) ·
-[Quickstart](#-quickstart-guide) ·
-[Project Structure](#%EF%B8%8F-project-structure) ·
+[Quickstart Guide](#-quickstart-guide) ·
+[Project Structure](#️-project-structure)
 
 </div>
 
 ---
 
-## 🎯 Executive Summary & The Business Problem
+## Executive Summary & The Business Problem
 
-Many e-commerce and subscription businesses realize that a customer is leaving **only after they stop buying**. At that point, the cost of finding a new customer has already been spent, and bringing the customer back can be difficult and expensive.
+Many e-commerce stores and subscription businesses only discover customer churn **after customers stop purchasing**. By that time, the money spent to get that customer has already been used, and bringing them back can be difficult and expensive.
 
-This platform analyzes past customer behavior to **identify customers who may be at risk of leaving early**. It uses machine learning to estimate churn risk, find the main reasons behind that risk, and recommend one of **six practical actions (Next Best Action - NBA)**. This gives marketing, support, and CRM teams a chance to act before the customer leaves.
-
+This platform analyzes behavioral customer signals to **identify churn risks long** before customers leave. Using machine learning, it predicts the risk of leaving, pinpoints the main reason behind that risk, and recommends one of **practical retention actions (Next Best Action - NBA)**. This allows marketing, support, and sales teams to step in early and protect business revenue.
 
 ### What the Data Reveals (5,630 Customers)
 
-| Finding | Metric / Evidence | Business Implication |
+| Finding | What the Data Shows | What It Means for Business |
 |---|---|---|
-|  **Baseline Churn** | **16.84 %** overall churn rate (948 of 5,630 customers) | Systematic retention represents the single highest-margin revenue lever. |
-|  **Complaint Multiplier** | **31.7 %** churn among complainants vs. **10.9 %** without (≈ **2.9×** multiplier) | 53.6 % of all churners lodged a complaint; immediate resolution is critical. |
-|  **First-Month Cliff** | **51.8 %** churn for tenure ≤ 1 month; **65.5 %** of churners quit in month 1 | Onboarding and the second-order activation loop decide long-term retention. |
-|  **Satisfaction Paradox** | **23.8 %** churn at score 5/5 vs. **11.5 %** at score 1/5 | Survey scores create false security; behavioral drop-off precedes survey feedback. |
-|  **Category Vulnerability** | Mobile Phone **27.4 %**, Fashion **15.5 %**, Laptop **10.2 %**, Grocery **4.9 %** | Digital categories suffer high brand-switching; grocery exhibits habit loyalty. |
-|  **Logistics & Rewards** | Churn rises from **13.5 %** to **20.4 %** with delivery distance; falls to **10.2 %** with cashback | Shipping friction accelerates attrition; cashback acts as a tangible retention lock. |
-
-
+| **Baseline Churn** | **16.84%** of customers left (948 out of 5,630). | Keeping existing customers is the fastest way to protect profit margins. |
+| **Complaint Multiplier** | Customers with complaints churn at **31.7%** vs. **10.9%** without (about **3× higher**). Over half of all lost customers had complained. | Solving customer complaints quickly is critical to preventing churn. |
+| **First-Month Cliff** | **51.8%** of customers leave in their first month, making up **65.5%** of all lost customers. | The first 30 days and securing the second purchase determine long-term loyalty. |
+| **Satisfaction Paradox** | Customers giving a top score of 5/5 churn at **23.8%**, compared to **11.5%** for those scoring 1/5. | Survey scores can be misleading; watching real buying behavior is much more reliable. |
+| **Category Risk** | Mobile phones: **27.4%** churn · Fashion: **15.5%** · Laptops: **10.2%** · Grocery: **4.9%**. | Electronics face quick brand-switching, while grocery shoppers build stronger daily habits. |
+| **Delivery & Rewards** | Churn rises from **13.5%** to **20.4%** as distance grows, but drops to **10.2%** when cashback rewards increase. | Slow or costly delivery drives customers away; cashback rewards keep them coming back. |
 
 ---
 
 ## 🏗️ System Architecture & Pipeline
 
-The system is built on an enterprise **Client-Server Architecture**, pairing an asynchronous **FastAPI** backend with a high-performance **Single Page Application (SPA)** frontend built with vanilla JavaScript, modern CSS, and Chart.js.
+The system uses a fast and lightweight **Client-Server setup**:
+* **Backend:** Built with **FastAPI** (Python) for quick data processing and real-time model scoring.
+
+* **Frontend:** A responsive **Single Page Application (SPA)** using clean HTML, modern CSS, and Chart.js for smooth data visualization.
 
 ```text
  ┌─────────────────────────── OFFLINE PIPELINE (Run Once) ───────────────────────────┐
@@ -85,16 +86,19 @@ The system is built on an enterprise **Client-Server Architecture**, pairing an 
  │                                                                                    │
  │   Frontend Presentation Layer (static/ SPA)                                        │
  │      ├── static/index.html   (Semantic dashboard markup & 360° modal dialog)       │
- │      ├── static/style.css    (Enterprise UI design system)       │
+ │      ├── static/style.css    (Enterprise UI design system)                         │
  │      └── static/app.js       (Reactive state, Chart.js charts, modal controller)   │
  └────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Architectural Principles
+### Key Design Principles
 
-1. **Deterministic Preprocessing:** All imputation medians, IQR clipping thresholds, and categorical levels are encapsulated within `models/churn_model.joblib`. Serving logic strictly replicates training transformations without data leakage or feature drift.
-2. **Lightweight Native Explainability:** Root-cause drivers are generated directly from tree traversal path attribution implemented in pure NumPy, calculating exact percentage-point impacts for each factor without external runtime overhead.
-
+1. **Consistent Data Processing:** All data-cleaning rules, category mappings, and average values are saved directly inside the model file (`models/churn_model.joblib`). This ensures the live system processes incoming customer data exactly the same way it was trained, preventing errors and data mismatches.
+2. **Clear & Fast Explainability:** Instead of using heavy, slow external libraries, the system uses a fast, built-in method in NumPy to explain predictions. It instantly shows the exact percentage impact of each reason causing the customer's churn risk.
+3. **Actionable Risk Levels:** Customers are grouped into three simple, practical categories:
+   * 🟢 **Stable / Low Risk (`Risk < 35%`):** Healthy, regular shoppers who do not need promotional messages, helping protect profit margins.
+   * 🟠 **Warning (`35% ≤ Risk ≤ 70%`):** Customers showing early warning signs who need a timely reminder or offer.
+   * 🔴 **Critical (`Risk > 70%`):** Customers very likely to leave who require immediate attention and high-priority recovery actions.
 
 ### Model Performance Metrics
 
@@ -109,7 +113,25 @@ The system is built on an enterprise **Client-Server Architecture**, pairing an 
 
 ---
 
-## ✨ Key Dashboard Features
+## Plug-and-Play Integration Gateway
+
+This platform is engineered not as an isolated data silo, but as a modular intelligence layer built to seamlessly plug into any existing business ecosystem, IT stack, or operational workflow:
+
+1. **Real-Time REST API & Webhooks (Super Fast < 80ms):**
+   * Built for online stores and cloud CRMs.
+   * Checks customer risk instantly when an event happens (such as a customer filing a complaint, abandoning a cart, or stopping purchases) and sends immediate alerts back to your CRM or marketing system.
+
+2. **Safe Database Sync (For Accounting & ERP Systems):**
+   * Connects safely to popular business databases (SQL Server, MySQL, PostgreSQL, Oracle).
+   * Runs an automatic, read-only check each night to score all customer accounts without slowing down daily business operations.
+
+3. **Simple Excel / CSV Upload (No Coding Needed):**
+   * Made for sales, marketing, and support teams without technical skills.
+   * Simply upload a customer spreadsheet to instantly receive a list of customers grouped by risk level, clear reasons for each risk, and ready-to-send SMS messages with discount codes.
+
+---
+
+## ✨Key Dashboard Features
 
 The web application is structured into **three operational tabs**, catering to executive stakeholders, marketing retention teams, and frontline account managers:
 
@@ -119,124 +141,61 @@ The web application is structured into **three operational tabs**, catering to e
  ├─────────────────────────┬────────────────────────┬─────────────────────┤
  │  📊 تحلیل‌های استراتژیک  │  ⚡ رادار و آزمایشگاه  │  📋 فهرست مشتریان  │
  │  Strategic Intelligence │  Live Radar & Lab      │  Customer Directory │
+ │                         │  & Customer Retention  │  & 360° Dossier     │
  └─────────────────────────┴────────────────────────┴─────────────────────┘
 ```
 
 ---
 
-### 📊 Tab 1 — Strategic Intelligence (Executive View)
+### Tab 1 — Strategic Intelligence (Executive View)
 
-
-### **Executive KPIs**
-
-* **Current Churn Rate:** **16.84%** of customers are at risk of leaving, with **948 lost customers**.
-* **Revenue at Risk Simulator:** An interactive slider that estimates potential annual financial loss based on the number of customers.
-* **Model Performance:** **99.8%** pattern detection accuracy and **98.0%** machine-learning precision.
-
-### **5 Customer Behavior Analyses**
-
-1. **The Satisfaction Paradox:** Shows why even highly satisfied customers may still leave.
-2. **The Complaint Effect:** Compares churn rates between customers with and without complaints, showing a nearly **3× higher churn rate** among customers with complaints.
-3. **The First-Month Risk:** Shows that the first month is the most critical period, with **65.5% of churn occurring within the first 30 days**.
-4. **Category Risk:** Compares churn risk across different product categories, including **Mobile Phone and Grocery**.
-5. **Delivery & Rewards:** Examines the relationship between delivery distance, purchase rewards, and customer retention.
-
-### **Executive Action Roadmap**
-
-A practical action plan for **Marketing, Customer Support, Logistics, and Loyalty teams**, helping each team focus on the areas with the highest churn risk.
+* **Key Business KPIs:** Shows the **16.84% baseline churn** (948 lost customers), overall model accuracy (**98.0%**), and an interactive slider to estimate revenue lost to churn.
+* **5 Key Behavioral Analyses:**
+  1. *Satisfaction Paradox:* Explains why 5/5 rated customers still leave.
+  2. *Complaint Impact:* Unresolved complaints raise churn risk by nearly **3×**.
+  3. *Month-One Cliff:* **65.5%** of all churn happens within the first 30 days.
+  4. *Category Risk:* High churn in **Mobile Phones (27.4%)** vs. high loyalty in **Groceries (4.9%)**.
+  5. *Delivery & Cashback:* Farther shipping distance increases churn; higher cashback reduces it.
+* **Action Roadmap:** Practical steps tailored for Marketing, Support, Logistics, and Loyalty teams.
 
 ---
 
-### ⚡ Tab 2 — Customer Monitoring & Retention
+### Tab 2 — Live Radar & Customer Evaluation Lab
 
-Designed for real-time customer monitoring and testing different customer situations.
-
-#### **1. Live Customer Radar**
-
-* **Live Customer Monitoring:** Automatically checks **2 customers every 6 seconds** and shows their current churn risk.
-* **Scan Countdown:** A live countdown shows when the next customers will be checked, with an option to pause or resume monitoring.
-* **Risk Levels:**
-
-  * 🔴 **High Risk** (>70%): Clear warning with the main factors related to the risk.
-  * 🟠 **Medium Risk** (50%–70%): Warning status with the main customer behavior behind the risk.
-  * 🟢 **Low Risk** (<35%): Customer is currently in a stable position.
-* **Customer Details:** View the customer's full information directly from the radar without leaving the page. Monitoring pauses while the details are open.
-
-#### **2. Customer Retention Analysis**
-
-Enter a few basic customer details and see how the system evaluates that customer:
-
-* Membership duration
-* Days since the last purchase
-* Complaint status
-* Satisfaction score (1–5)
-* Preferred product category
-* Number of previous orders
-* City type
-* Business or store name
-
-#### **Quick Customer Examples**
-
-Three ready-to-use examples are available for a quick demonstration:
-
-* ⚠️ **Unhappy Customer** — New customer with a complaint
-* 🟢 **Stable Customer** — Long-term customer with no complaint
-* ⏳ **Inactive Customer** — New customer who has not purchased recently
-
-#### **AI Customer Evaluation**
-
-After entering the customer information, the system shows:
-
-* **Churn Probability:** How likely the customer is to leave.
-* **Risk Level:** Low, medium, or high.
-* **Main Risk Factors:** The most important customer behaviors linked to the risk.
-* **Estimated Retention Value:** The potential annual value of keeping the customer.
-* **Recommended Action:** One of **6 practical retention actions**, including a suitable offer and ready-to-send customer message.
-* **Register Action:** Save the recommended action in the system with one click.
-
-
+* **Live Customer Radar:** Automatically scans **2 incoming customer profiles every 6 seconds**, showing their live churn probability and risk tier (🔴 Critical, 🟠 Warning, 🟢 Stable). Clicking any card opens their full profile.
+* **Interactive Customer Evaluation Form:** Test any customer situation in real time:
+  * **Quick Demo Scenarios:** One-click presets for *Unhappy Customer*, *Stable Customer*, or *Inactive Customer*.
+  * **Instant AI Output:** Displays the predicted churn risk, root-cause friction point, estimated annual value of keeping them, and a ready-to-send SMS with an action code.
 
 ---
 
-###  Tab 3 — Customer 360° Dossier & Treatment Table
+### Tab 3 — Customer 360° Directory & Action Hub
 
-An enterprise customer directory and intervention dispatch hub modeled after Stripe and Linear interfaces:
-
-* **200-Customer Directory Table:**
-  * Searchable by numeric Customer ID.
-  * Filterable by risk category (All, Critical, Warning, Stable).
-  * Color-coded risk pills with live Persian formatting.
-  * Visual **Next Best Action (NBA) Playbook Badges** representing prescribed interventions.
-  * Treatment state tags: `در انتظار اقدام` (Pending) vs. `تحت مداخله (In Treatment) ✅`.
-* **Interactive 360° Customer Dossier Modal:**
-  * Triggered via the **«مشاهده پرونده»** action button.
-  * Seamlessly dismissible via header close button (`✕`), background overlay click, or keyboard `Escape` key.
-  * **Right Column — Comprehensive 19-Variable Profile (Categorized into 3 Panels):**
-    1. *Identity & Geography (مشخصات هویتی و جغرافیایی):* Customer ID, City Tier, Warehouse-to-Home Distance, Number of Registered Addresses, etc.
-    2. *Transaction & Financial History (تاریخچه تراکنش و مالی):* Tenure, Preferred Category, Order Count, Cashback Amount, Average Cashback per Order, Order Growth YoY, Coupon Usage.
-    3. *App Behavior & Engagement (رفتار در اپلیکیشن و تعامل):* Hours on App, Registered Devices, Preferred Payment Mode, Satisfaction Score, Complain Flag.
-  * **Left Column — NBA Command Console:**
-    * *Stable Customers (< 50 % & No Complaints):* Authoritative **«سکوت استراتژیک» (Strategic Do-Not-Disturb)** panel — protecting profit margin and customer peace.
-    * *At-Risk Customers (≥ 50 % or Complaints):* 3 minimal structured cards:
-      1. ⚠️ **Main Risk Cause:** Concise diagnostic summary of primary friction point.
-      2. 💡 **Bold Proposed Strategy:** Tailored business playbook and operational direction.
-      3. 📱 **SMS / Dispatch Draft:** Pre-written copy with highlighted promo code and one-click copy button.
-    * **Action Execution CTA:** Single-click button to register the customer as `تحت مداخله (In Treatment) ✅` across the entire session.
+* **Customer Directory Table:**
+  * Search by Customer ID and filter by risk level (Critical, Warning, Stable).
+  * Color-coded risk badges and action recommendations.
+  * Tracks customer progress: `Pending` vs. `In Treatment`.
+* **Interactive 360° Customer Dossier:** Click **"مشاهده پرونده"** to view a two-column profile:
+  * **Right Panel:** A complete breakdown of customer identity, order history, and app activity.
+  * **Left Panel (AI Action Center):**
+    * *Stable Customers (< 35%):* **"Strategic Silence"** — no marketing SMS sent, protecting profit margins and avoiding customer annoyance.
+    * *At-Risk Customers (≥ 35%):* Surfaces the main reason for leaving, the recommended business strategy, and a pre-written SMS with an activation code.
+    * **Action Button:** Instantly flags the customer as `Under Intervention (In Treatment) ✅`.
 
 ---
 
-## 🧠 Behavioral Next Best Action (NBA) Playbooks
+## Behavioral Next Best Action (NBA) Playbooks
 
-Instead of generic blanket discounting, the platform incorporates a **6-Playbook Behavioral Decision Engine** (`explorer_recommendation` in `main.py`). The engine analyzes customer signals (`Complain`, `SatisfactionScore`, `Tenure`, `DaySinceLastOrder`, `WarehouseToHome`, `CityTier`, `OrderCount`) to prescribe the exact optimal tactical response:
+Instead of sending generic blanket discounts that waste profit margins, the platform uses a **6-Playbook Decision Engine** (`explorer_recommendation` in `main.py`). It analyzes real behavioral signals to choose the most effective, margin-safe retention action:
 
-| # | Playbook | Trigger Criteria | Tactical Strategy | Promo Code | Discount / Incentive |
-|---|---|---|---|---|---|
-| 1 | **Strategic Do-Not-Disturb**<br>*(سکوت استراتژیک)* | `Risk < 50 %` AND `Complain == 0` | **Marketing Silence:** Customer is stable. Do not send promotional SMS to prevent marketing fatigue, protect margin, and preserve organic buying habits. | — | None (No SMS) |
-| 2 | **Trust Restoration**<br>*(جبران تجربه نامطلوب)* | `Complain == 1` OR `SatisfactionScore ≤ 2` | **Relationship Repair:** Priority customer care outreach, guaranteed hassle-free doorstep returns, and compensation discount voucher. | `CARE20` | **20 %** compensation |
-| 3 | **Streak Challenge**<br>*(تثبیت حلقه خرید دوم)* | `Tenure ≤ 2` AND `DaySinceLastOrder ≥ 4` | **Second-Order Habit Formation:** Mitigate the month-1 cliff with a gamified 5-day purchase challenge paired with wallet credit rewards. | `STREAK` | **15 %** wallet booster |
-| 4 | **VIP Elevation**<br>*(ارتقای عضویت VIP)* | `Tenure ≥ 6` OR `OrderCount ≥ 3` | **Status Re-engagement:** Grant 30-day temporary VIP tier access with complimentary shipping, priority dispatch, and executive discount. | `VIP30` | **30 %** VIP privilege |
-| 5 | **Smart Unbundling**<br>*(هدیه متناسب با خرید)* | `WarehouseToHome > 15` OR `CityTier ≥ 2` | **Logistics Friction Offset:** Instead of price cuts, provide a relevant complementary physical gift matching their order category to offset delivery distance. | `GIFT` | **10 %** complementary gift |
-| 6 | **Time-Sensitive Winback**<br>*(مشوق بازگشت زمان‌دار)* | General Fallback for `Risk ≥ 50 %` | **Urgency Re-activation:** Deploy a 48-hour deadline voucher targeting abandoned basket items to prevent finalized attrition. | `RECOVER` | **25 %** flash credit |
+| # | Playbook | When It Triggers | Business Strategy | Action / Code |
+|---|---|---|---|---|
+| 1 | **Strategic Do-Not-Disturb**<br>*(سکوت استراتژیک)* | `Risk < 35%` · `Complain == 0` · `Days < 15` | **Marketing Silence:** Customer is buying naturally. Avoid promotional spam to protect profit margins and brand value. | *No message / No discount* |
+| 2 | **Trust Restoration**<br>*(جبران تجربه نامطلوب)* | `Complain == 1` OR `Score ≤ 2` | **Relationship Repair:** Service failure is the #1 churn driver. Solve emotional friction with a doorstep return guarantee and proactive care. | `CARE20` (20% goodwill voucher) |
+| 3 | **Streak Challenge**<br>*(تثبیت حلقه خرید دوم)* | `Tenure ≤ 2 mos` · `Days ≥ 4` | **Habit Formation:** 65.5% of churn happens in month 1. A 5-day purchase challenge builds a repeat buying routine. | `STREAK` (Wallet credit reward) |
+| 4 | **VIP Elevation**<br>*(ارتقای عضویت VIP)* | `Tenure ≥ 6 mos` OR `Orders ≥ 3` | **Status Re-engagement:** High-value customers rarely leave over price. A 30-day Gold VIP pass and recognition make them feel valued. | `VIP30` (30% VIP privilege) |
+| 5 | **Smart Unbundling**<br>*(هدیه متناسب با خرید)* | `Distance > 15 km` OR `Tier ≥ 2` | **Offsetting Delivery Friction:** Distant shipping adds friction. A free matching physical gift delights the customer without devaluing product price. | `GIFT` (Complementary gift) |
+| 6 | **Time-Sensitive Winback**<br>*(مشوق بازگشت زمان‌دار)* | `Days ≥ 15` OR `Risk ≥ 35%` | **Urgency Reactivation:** Inactive buyers need immediate motivation. A 48-hour expiring voucher restarts stalled purchasing habits. | `RECOVER` (25% flash credit) |
 
 ---
 
@@ -246,13 +205,10 @@ Instead of generic blanket discounting, the platform incorporates a **6-Playbook
 * **Python:** 3.10 or newer (tested on Python 3.12)
 * **Modern Web Browser:** Chrome, Edge, Firefox, or Safari
 
-
 ### 1. Clone the Repository
-
 ```bash
-git clone [https://github.com/Arshia-Rasouli/customer_churn.git](https://github.com/Arshia-Rasouli/customer_churn.git)
+git clone https://github.com/Arshia-Rasouli/customer_churn.git
 cd customer_churn
-
 ```
 
 ### 2. Create and Activate Virtual Environment
@@ -287,7 +243,7 @@ joblib>=1.3.0
 </details>
 
 ### 4. (Optional) Retrain or Re-export the Model
-The repository includes pre-fitted weights in `models/churn_model.joblib` and stream rows in `data/test_stream_data.csv`. To retrain the Random Forest model:
+The repository includes pre-fitted weights in `models/churn_model.joblib` and evaluation records in `data/test_stream_data.csv`. To retrain the Random Forest model:
 ```bash
 python export_model.py
 ```
@@ -311,22 +267,22 @@ http://localhost:8000
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```text
 customer_churn_project/
-├── main.py                     # FastAPI backend application
+├── main.py                     # FastAPI backend application & NBA recommendation engine
 ├── churn_inference.py          # Real-time ML inference engine & additive driver attribution
 ├── export_model.py             # Reproducible training pipeline: preprocessing, fitting & bundle export
 ├── test_run.py                 # Smoke test script for backend inference verification
 ├── requirements.txt            # Python package dependencies (FastAPI, Uvicorn, scikit-learn, etc.)
 ├── README.md                   # System documentation and operational manual
 │
-├── static/                     # Single Page Application 
+├── static/                     # Single Page Application (SPA) frontend
 │   ├── index.html              # Dashboard semantic layout, modal structure & view containers
-│   ├── style.css               # Enterprise design system (#C4D5F9, #3157B7, responsive layout)
+│   ├── style.css               # Enterprise UI design system (#C4D5F9, #3157B7, responsive layout)
 │   ├── app.js                  # Client state manager, API fetch controllers, Chart.js renderers
-│   └── chart.umd.min.js        # Local Chart.js library for independent offline graph rendering
+│   └── chart.umd.min.js        # Local Chart.js library for offline graph rendering
 │
 ├── data/                       # Dataset storage
 │   ├── E-Commerce-Dataset.csv  # Raw training dataset (5,630 e-commerce records)
