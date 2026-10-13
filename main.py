@@ -434,13 +434,13 @@ def explorer_recommendation(
             "playbook_badge": "جبران تجربه نامطلوب",
             "playbook_badge_fa": "جبران تجربه نامطلوب",
             "root_cause_short": "شکایت ثبت‌شده یا رضایت پایین از تجربه خرید",
-            "strategy": "بازسازی اعتماد با پیگیری اولویت‌دار، گارانتی مرجوعی در محل و کد CARE20",
-            "strategy_desc": "ابتدا مسئله مشتری را با پیگیری اولویت‌دار حل کنید؛ سپس امکان تست کالا هنگام تحویل، گارانتی مرجوعی در محل و کد تخفیف جبرانی CARE20 را برای بازگرداندن اعتماد فعال کنید.",
-            "action": "پیگیری فوری پشتیبانی و فعال‌سازی کد CARE20",
-            "action_text": "ثبت مشتری در صف تماس ویژه پشتیبانی، گارانتی مرجوعی در محل و تخصیص کد جبرانی CARE20.",
-            "code": "CARE20",
-            "discount": 20,
-            "sms": f"{store_name}: مشتری گرامی، بابت تجربه اخیر شما متأسفیم. برای جبران، ۲۰٪ تخفیف همراه با گارانتی مرجوعی در محل برای خرید بعدی شما فعال شد.\nکد: CARE20"
+            "strategy": "بازسازی اعتماد با پیگیری اولویت‌دار، گارانتی مرجوعی در محل و کد CARE10",
+            "strategy_desc": "ابتدا مسئله مشتری را با پیگیری اولویت‌دار حل کنید؛ سپس امکان تست کالا هنگام تحویل، گارانتی مرجوعی در محل و کد تخفیف جبرانی CARE10 را برای بازگرداندن اعتماد فعال کنید.",
+            "action": "پیگیری فوری پشتیبانی و فعال‌سازی کد CARE10",
+            "action_text": "ثبت مشتری در صف تماس ویژه پشتیبانی، گارانتی مرجوعی در محل و تخصیص کد جبرانی CARE10.",
+            "code": "CARE10",
+            "discount": 10,
+            "sms": f"{store_name}: مشتری گرامی، بابت تجربه اخیر شما متأسفیم. برای جبران، ۱۰٪ تخفیف همراه با گارانتی مرجوعی در محل برای خرید بعدی شما فعال شد.\nکد: CARE20"
         }
 
     # 3. Gamified Streak Challenge (Tenure <= 2 and DaySinceLastOrder >= 4)
@@ -456,7 +456,7 @@ def explorer_recommendation(
             "action": "تخصیص اعتبار پلکانی و فعال‌سازی کد STREAK",
             "action_text": "ارسال چالش ۵ روزه خرید با پاداش کیف پول و فعال‌سازی کد STREAK.",
             "code": "STREAK",
-            "discount": 15,
+            "discount": 5,
             "sms": f"{store_name}: از اعتمادتان سپاسگزاریم! تا ۵ روز آینده با ثبت خرید بعدی، پاداش کیف پول به همراه تخفیف ویژه برای شما فعال می‌شود.\nکد فعال‌سازی: STREAK"
         }
 
@@ -471,10 +471,10 @@ def explorer_recommendation(
             "strategy": "ارتقای موقت به سطح VIP برای حفظ مشتری ارزشمند و جلوگیری از افت خرید",
             "strategy_desc": "برای جلوگیری از افت خرید، عضویت VIP مشتری را برای ۳۰ روز فعال کنید و مزایای ملموس مانند ارسال رایگان، پشتیبانی اولویت‌دار و تخفیف VIP ارائه دهید.",
             "action": "فعال‌سازی سطح ویژه VIP با کد VIP30",
-            "action_text": "تخصیص عضویت VIP شامل ارسال رایگان، پشتیبانی اولویت‌دار و ۳۰٪ تخفیف برای خریدهای ۳۰ روز آینده.",
+            "action_text": "تخصیص عضویت VIP شامل ارسال رایگان، پشتیبانی اولویت‌دار و تخفیف برای خریدهای ۳۰ روز آینده.",
             "code": "VIP30",
             "discount": 30,
-            "sms": f"{store_name}: برای قدردانی از همراهی شما، عضویت VIP برای ۳۰ روز فعال شد؛ با مزایایی مانند ارسال رایگان و ۳۰٪ تخفیف در خرید بعدی.\nکد: VIP30"
+            "sms": f"{store_name}: برای قدردانی از همراهی شما، عضویت VIP برای ۳۰ روز فعال شد؛ با مزایایی مانند ارسال رایگان و تخفیف در خرید بعدی.\nکد: VIP30"
         }
 
     # 5. Smart Unbundling (WarehouseToHome > 15 or CityTier >= 2)
@@ -956,17 +956,13 @@ def get_customers():
     """
     Returns list of 200 stream customers with their churn risk for Tab 3 table and 360 modal.
     """
-    # Annotate with registered state
     result = []
     for c in db.all_customers_cache:
         c_copy = dict(c)
-        c_copy["is_registered"] = (
-            str(c["id"]) in db.registered_actions or c["id"] in db.registered_actions
-        )
+        c_copy["is_registered"] = False
         c_copy.pop("raw_features", None)
         result.append(c_copy)
     return result
-
 
 @app.post("/api/action")
 def register_action(req: ActionRequest):
