@@ -985,7 +985,7 @@ function renderLabResult(res) {
     return;
   }
 
-  const isRegistered = state.registeredActions.has(res.lab_id) || res.is_registered;
+  const isRegistered = state.registeredActions.has(res.lab_id);
   const regBtnHtml = isRegistered
     ? `<button type="button" class="btn-primary-action" disabled style="background:#1E293B;color:#64748B;box-shadow:none;">✓ اقدام پیشنهادی قبلاً ثبت شده است</button>`
     : `<button type="button" class="btn-primary-action" id="btn-reg-lab" data-id="${res.lab_id}">ثبت اقدام پیشنهادی در سامانه</button>`;
@@ -1206,7 +1206,7 @@ function renderCustomersTable(customers) {
     }
 
     const tenureTxt = c.tenure !== null && c.tenure !== undefined ? `${toPersianDigits(Math.round(c.tenure))} ماه` : '—';
-    const isReg = state.registeredActions.has(String(c.id)) || c.is_registered;
+    const isReg = state.registeredActions.has(String(c.id));
     const actionStatus = isReg
       ? `<span class="badge-treatment-status active"><span class="pulse-dot-green"></span>تحت مداخله (In Treatment) ✅</span>`
       : `<span class="badge-treatment-status pending">در انتظار اقدام</span>`;
@@ -1329,7 +1329,7 @@ function openDossierModal(customerId) {
 
   const nba = customer.nba || customer.recommendation || {};
   const nbaCfg = getNbaBadgeConfig(nba, riskVal);
-  const isReg = state.registeredActions.has(String(customer.id)) || customer.is_registered;
+  const isReg = state.registeredActions.has(String(customer.id));
 
   if (riskArea) riskArea.innerHTML = '';
 
