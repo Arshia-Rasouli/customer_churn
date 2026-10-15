@@ -18,6 +18,10 @@
 
 ---
 
+![Uploading 1080-30frame-slow-video-compressed.webp…]()
+
+
+
 ## Executive Summary & The Business Problem
 
 Many e-commerce stores and subscription businesses only discover customer churn **after customers stop purchasing**. By that time, the money spent to get that customer has already been used, and bringing them back can be difficult and expensive.
