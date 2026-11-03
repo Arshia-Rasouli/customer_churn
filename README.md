@@ -12,11 +12,16 @@
 [Dashboard Features](#-key-dashboard-features) ·
 [Behavioral Playbooks](#-behavioral-next-best-action-nba-playbooks) ·
 [Quickstart Guide](#-quickstart-guide) ·
+[Docker Deployment](#docker-deployment-guide) .
 [Project Structure](#️-project-structure)
 
 </div>
 
 ---
+
+<img width="1280" height="800" alt="1080-30frame-slow-video-compressed" src="https://github.com/user-attachments/assets/9e737575-dc5c-46a0-829e-6b1f0d052ccb" />
+
+
 
 ## Executive Summary & The Business Problem
 
@@ -266,6 +271,58 @@ http://localhost:8000
 ```
 
 ---
+
+## Docker Deployment Guide
+
+For reproducible and isolated execution, a multi-stage `Dockerfile` based on `python:3.11-slim` is provided, configured with a non-root user (`appuser`) for security best practices.
+
+### 1. Build the Docker Image
+
+Build the container image from the project root:
+
+```bash
+docker build -t customer-churn-app .
+```
+
+---
+
+### 2. Run the Container
+
+#### A Quick Start (Standard Run)
+Run the application in detached mode mapped to port `8000`:
+
+```bash
+docker run -d \
+  --name churn-radar-app \
+  -p 8000:8000 \
+  customer-churn-app
+```
+
+>  **Web Dashboard:** Access the UI at [http://localhost:8000](http://localhost:8000).
+
+---
+
+### 3. Container Management
+
+- **View Container Logs:**
+  ```bash
+  docker logs -f churn-radar-app
+  ```
+
+- **Inspect Running Status:**
+  ```bash
+  docker ps --filter "name=churn-radar-app"
+  ```
+
+- **Run Smoke Test inside Container:**
+  ```bash
+  docker exec -it churn-radar-app python test_run.py
+  ```
+
+- **Stop and Remove Container:**
+  ```bash
+  docker stop churn-radar-app && docker rm churn-radar-app
+  ```
 
 ## Project Structure
 
