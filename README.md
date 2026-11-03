@@ -12,7 +12,7 @@
 [Dashboard Features](#-key-dashboard-features) ·
 [Behavioral Playbooks](#-behavioral-next-best-action-nba-playbooks) ·
 [Quickstart Guide](#-quickstart-guide) ·
-[Docker Deployment](#-docker-deployment-guide) .
+[Docker Deployment](#docker-deployment-guide) .
 [Project Structure](#️-project-structure)
 
 </div>
@@ -272,7 +272,7 @@ http://localhost:8000
 
 ---
 
-##  Docker Deployment Guide
+## Docker Deployment Guide
 
 For reproducible and isolated execution, a multi-stage `Dockerfile` based on `python:3.11-slim` is provided, configured with a non-root user (`appuser`) for security best practices.
 
